@@ -1,0 +1,55 @@
+<template name="ct-rpl">
+  <view class="post-component">
+    <view class="post-component-header-user-content">
+      <view class="post-component-header-user-name">
+        <text><text class="c-red">{{item.nickname}}</text>回复了这个帖子</text>
+        <text class="community-time">{{item.atime}}</text>
+      </view>
+      <text class="post-component-header-created-at">{{item.rcont}}</text>
+    </view>
+    <navigator url="../details/details?tid={{item.tid}}" hover-class="navigator-hover">  
+      <view class="community_rpl">
+        <text>{{item.pnickname}}</text>
+        <text class="community-content">{{item.content}}</text>
+      </view>
+    </navigator>
+  </view>
+</template>
+
+<template name="ct-zan">
+  <view class="post-component">
+    <view class="post-component-header-user-content">
+      <view class="post-component-header-user-name">
+        <text><text class="c-red">{{item.nickname}}</text>点赞了这个帖子</text>
+        <text class="community-time">{{item.atime}}</text>
+      </view>
+    </view>
+    <navigator url="../details/details?tid={{item.tid}}" hover-class="navigator-hover">  
+      <view class="community_rpl">
+        <text>{{item.nickname}}</text>
+        <text class="community-content">{{item.content}}</text>
+      </view>
+    </navigator>
+  </view>
+</template>
+
+<template name="emptyList">
+    <view class="empty-list">
+        <view class="empty-list-image">
+            <image src="/images/empty-list.png"></image>
+        </view>
+        <view class="empty-list-title">
+            <text>暂无评论</text>
+        </view>
+    </view>
+</template>
+
+<template name="noMore">
+    <view class="no-more">
+        <view class="no-more-decorator"></view>
+        <view class="no-more-content">
+      没有更多{{content}}
+    </view>
+        <view class="no-more-decorator"></view>
+    </view>
+</template>

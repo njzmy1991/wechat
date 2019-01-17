@@ -1,0 +1,43 @@
+.empty-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-list-image {
+    margin-top: 200rpx;
+}
+
+.empty-list-image image {
+    max-width: 112rpx;
+    max-height: 91rpx;
+}
+
+.empty-list-title {
+}
+
+.empty-list-title text {
+    color: #CCCCCC;
+    font-size: 30rpx;
+}
+
+.no-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50rpx 0;
+}
+
+.no-more-decorator {
+    width: 30rpx;
+    height: 1px;
+    background-color: #CCCCCC;
+}
+
+.no-more-content {
+    color: #CCCCCC;
+    font-size: 20rpx;
+    margin-right: 10rpx;
+    margin-left: 10rpx;
+}

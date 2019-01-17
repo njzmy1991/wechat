@@ -1,0 +1,22 @@
+<!--pages/publish/publish.wxml-->
+<view class="main">
+  <view class="section top">
+      <view bindtap="cancelTap" class="cancel">取消</view>
+      <view class="butween"></view>
+      <view bindtap="publishTap" class="push" style="">发布</view>
+  </view>
+  <view class="section content">
+    <textarea autoHeight="true" bindinput="textChanged" class="text" cursorSpacing="10" maxlength="-1" placeholder="请输入内容..." placeholderClass="placeholdercss" value="{{cont}}" />
+    <view class="images">
+      <image wx:for="{{imgpath}}" wx:key="*this" bindlongpress='delImg' bindtap="seeImg" class="images-item" src="{{item}}" data-src="{{item}}"></image>
+      <image bindtap="addImages" class="images-item" src="/images/post-image.png"></image>
+    </view>
+  </view>
+  <view class="section bottom">
+    <label class="board-item">
+      <view class="">匿名发布</view>
+      <view class="butween"></view>
+      <switch bindchange="switchChanged" class="selected" />
+    </label>
+  </view>
+</view>

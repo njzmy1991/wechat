@@ -1,0 +1,54 @@
+<!--pages/user/user.wxml-->
+<import src="../../template/list.wxml"></import>
+<import src="../../template/user.wxml"></import>
+<view class="page">
+    <block>  
+        <view class="page__bd">
+            <view class="user-header">
+                <image class="user-header-background" mode="aspectFill" src="/images/user-bg.png"></image>
+                <view  class="user-header-avatar">
+                  <image wx:if="{{login}}" mode="aspectFill" src="{{userimg}}"></image>
+                  <image wx:else mode="aspectFill" bindtap='userLogin' src="../../images/touxiang.png"></image>
+                </view>
+                <view  class="user-header-name">
+                  <text wx:if="{{login}}">{{name}}</text>
+                  <view wx:else bindtap='userLogin'>点 击 登 录</view>
+                </view>
+            </view>
+            <view class="user-tab-list">
+                <view data-current="publish" bindtap="checkCurrent" class="user-tab-item">
+                    <text class="user-tab-item-text {{currentData == 'publish' ? 'text-border' : ''}}">发布</text>
+                </view>
+                <view data-current="reply" bindtap="checkCurrent" class="user-tab-item">
+                    <text class="user-tab-item-text {{currentData == 'reply' ? 'text-border' : ''}}">评论</text>
+                </view>
+                <view data-current="favour" bindtap="checkCurrent" class="user-tab-item">
+                    <text class="user-tab-item-text {{currentData == 'favour' ? 'text-border' : ''}}">点赞</text>
+                </view>
+            </view>
+            <block wx:if="{{currentData == 'publish'}}">
+              <view wx:if="{{Datalen == '1'}}">
+                <template is="emptyList"></template>
+              </view>
+              <block wx:for="{{list}}" wx:key>
+                <view class="noImageStyle">
+                  <template is="list" data="{{item}}"></template>
+                </view>
+              </block>
+              <template is="noMore"></template>
+            </block>
+            <block wx:if="{{currentData == 'reply'}}">
+              <block  wx:for="{{list}}" wx:key>
+                <template is="ct-rpl" data="{{item}}"></template>
+              </block>
+              <template is="noMore"></template>
+            </block>
+            <block wx:if="{{currentData == 'favour'}}">
+              <block  wx:for="{{list}}" wx:key>  
+                <template is="ct-zan" data="{{item}}"></template>
+              </block>
+              <template is="noMore"></template>
+            </block>
+        </view>
+    </block>
+</view>

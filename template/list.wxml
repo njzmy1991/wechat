@@ -1,0 +1,38 @@
+<template name="list">
+  <view class="userinfo_content">
+    <image class="touxiang" src="{{item.nickimg}}"></image>
+    <view class="touxiang_right">
+      <text class="touxiang_name">{{item.nickname}}</text>
+      <text class="name_time">{{item.atime}}</text>
+    </view>
+  </view>
+  <navigator url="/pages/details/details?tid={{item.tid}}" hover-class="navigator-hover">
+    <text>{{item.content}}</text>
+    <view class="threeImageStyle">
+      <block  wx:for="{{item.images}}" wx:key="*this" wx:for-item="img">  
+        <image class="threeSmallImageStyle" mode="aspectFill" src="{{img}}"></image>
+      </block>
+    </view>
+  </navigator>
+  <view class="bottomView">
+    <view class="bottomItemView">
+      <label bindtap="likeScang" data-tid="{{item.tid}}" data-favour="{{item.favour}}" data-key="{{item.floor}}">
+        <image class="bottomItemImage" src="../../images/ding.png" />
+        <text class="bottomItemText">{{item.favour}}</text>
+      </label>
+    </view>
+    <view class="bottomItemView">
+      <navigator url="/pages/details/details?tid={{item.tid}}" hover-class="navigator-hover">
+        <image class="bottomItemImage" src="../../images/bcomment.png" />
+        <text class="bottomItemText">{{item.rynum}}</text>
+      </navigator>  
+    </view>
+    <view class="bottomItemView">
+      <label>
+        <image class="bottomItemImage" src="../../images/bshare.png" />
+        <text class="bottomItemText">{{item.forward}}</text>
+        <button open-type="share" data-key="{{item.floor}}" data-forward="{{item.forward}}" data-tid="{{item.tid}}" data-content="{{item.content}}" data-img="{{item.images[0]}}" style="display:none;"></button>  
+      </label>
+    </view>
+  </view>
+</template>

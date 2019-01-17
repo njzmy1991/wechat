@@ -1,0 +1,95 @@
+<!--pages/details/details.wxml-->
+<scroll-view class="scrollViewStyle" style="height:{{height}}px" scroll-y="true" upper-threshold="2" lower-threshold="10" scroll-top="50"  bindscrolltolower="lower">
+  <view class="noImageStyle">
+    <view class="userinfo_content">
+      <image class="touxiang" src="{{details.nickimg}}"></image>
+      <view class="touxiang_right">
+        <text class="touxiang_name">{{details.nickname}}</text>
+        <text class="name_time">{{details.atime}}</text>
+      </view>
+    </view>
+    <text>{{details.content}}</text>
+    <view class="threeImageStyle">
+      <block wx:for="{{details.images}}" wx:key wx:for-item="dImg">  
+        <image class="threeSmallImageStyle" bindtap="imgYu"  mode="scaleToFill" data-list="{{details.images}}" data-src="{{dImg}}" src="{{dImg}}"></image>
+      </block>
+    </view>
+  </view>
+  <view class="pinglun_num">评论{{details.rynum}}</view>
+  <view  wx:if="{{reply!=''}}">
+    <block wx:for="{{reply}}" wx:key wx:for-item="r_item">
+      <view class="rpl_list">
+        <view class="userinfo_content">
+          <image class="touxiang" src="{{r_item.nickimg}}"></image>
+          <view class="touxiang_right">
+            <text class="touxiang_name_rpl">{{r_item.nickname}}</text>
+          </view>
+        </view>
+        <view class="rpl_content"><text class="reply_detail">{{r_item.content}}</text></view>
+        <view wx:if="{{r_item.p_reply!=''}}" class="rpl_rpl">
+          <text><text style="color:blue;">{{r_item.p_reply.nickname}}：</text>{{r_item.p_reply.content}}</text>
+        </view>
+        <text class="rpl_time">{{r_item.atime}}</text>
+        <image data-p_rid="{{r_item.rid}}" class="bottomItemImage" bindtap="toShowModal" src="../../images/comment.png" style="margin-left:80%;" />
+      </view>
+    </block>
+    <view class="no-more" wx:if="{{showMore}}">
+      <view class="no-more-decorator"></view>
+      <view class="no-more-content">没有更多</view>
+      <view class="no-more-decorator"></view>
+    </view>
+  </view>
+  <view wx:else class="empty-list">
+      <view class="empty-list-image">
+          <image src="/images/empty-list.png"></image>
+      </view>
+      <view class="empty-list-title"><text>暂无评论</text></view>
+  </view>
+  <view class="bottomView">
+    <view class="bottomItemView">
+      <label bindtap="likeScang" data-favour="{{details.favour}}">
+        <image class="bottomItemImage" src="../../images/ding.png" />
+        <text class="bottomItemText">{{details.favour}}</text>
+      </label>
+    </view>
+    <view class="bottomItemView">
+      <label bindtap="toShowModal" data-p_rid="0">
+        <image class="bottomItemImage" src="../../images/comment.png" />
+        <text class="bottomItemText">{{details.rynum}}</text>
+      </label>
+    </view>
+    <view class="bottomItemView">
+      <label>
+        <image class="bottomItemImage" src="../../images/share.png" />
+        <text class="bottomItemText">{{details.forward}}</text>
+        <button open-type="share" data-forward="{{details.forward}}" data-tid="{{details.tid}}" data-title="{{details.title}}" data-img="{{details.images[0]}}" style="display:none;"></button>
+      </label>
+    </view>
+  </view>
+  <view class='imgBox'>
+    <label style="position:relative;">
+      <image src="../../images/shared.png" class='img'></image>
+      <text class='dt-share'>({{details.forward}}位分享)</text>
+      <button open-type="share" data-idx="{{idx}}" data-forward="{{detailss.forward}}" data-tid="{{details.tid}}" data-title="{{details.title}}" data-img="{{details.images[0]}}" style="display:none;"></button>
+    </label>
+    <label  bindtap='formSubmit'>    
+      <image src="../../images/postd.png" class='img'></image>
+    </label> 
+  </view>
+  <view class='imagePathBox' bindtap='hideMask' hidden="{{maskHidden == false}}">
+    <image src="{{imagePath}}" class='shengcheng'></image>
+    <button class='baocun' bindtap='baocun'>保存相册，分享到朋友圈</button>
+  </view>
+  <view hidden="{{maskHidden == false}}" class="mask"></view> 
+  <view class="canvas-box">
+      <canvas  style="width: 375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>
+  </view>  
+  <!-- 评论模态框 -->
+  <view class="modal-mask" bindtap="hideModal" wx:if="{{showModal}}"></view>
+  <view wx:if="{{showModal}}">  
+    <view class="reply-dialog-content">
+      <textarea fixed focus autoHeight="true" bindinput='bindblur' class="reply-dialog-content-input" confirmType="发送" cursorSpacing="40" maxlength="-1" placeholder="" placeholderClass="reply-dialog-content-input-placeholder"></textarea>
+      <button bindtap="subReply" data-tid="{{details.tid}}" class="reply-dialog-send">发送</button>
+    </view>
+  </view>
+</scroll-view>

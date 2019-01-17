@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<import src="../../template/list.wxml"></import>
+<view class="page">
+    <block>
+        <block>
+            <view class="page__bd">
+                <scroll-view scrollX class="section boards-section">
+                    <view class="boards-section-content">
+                        <view bindtap="handleBoardChanged" class="board-item">
+                            <view class="board-item-text">最新消息</view>
+                            <!-- <view class="board-item-text">最热消息</view> -->
+                        </view>
+                    </view>
+                </scroll-view>
+                <scroll-view class="scrollViewStyle" style="height:{{height}}px" scroll-y="true" upper-threshold="2" lower-threshold="10" scroll-top="50"  bindscrolltolower="lower">
+                  <block wx:for="{{list}}" wx:key>
+                    <view class="noImageStyle">
+                      <template is="list" data="{{item}}"></template>
+                    </view>
+                  </block>
+                </scroll-view>
+            </view>
+        </block>
+    </block>
+</view>
