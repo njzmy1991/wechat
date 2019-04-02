@@ -36,10 +36,11 @@ function isLogin(t, result){
       content: '您还未登录 是否确定授权登录',
       success(res) {
         if (res.confirm) {
-          if(t == 'user'){
-            wx.redirectTo({url: '../login/login?t=user'})
-          }else{
-            wx.navigateTo({ url: '../login/login?t=' + t }) 
+          var url = '../login/login?t=' + t;
+          if ((t == 'index') || (t == 'publish')) {
+            wx.navigateTo({url: url})
+          } else {
+            wx.redirectTo({url: url})
           }
         }else if(res.cancel) {}
       }

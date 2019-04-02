@@ -17,19 +17,21 @@
   <view class="bottomView">
     <view class="bottomItemView">
       <label bindtap="likeScang" data-tid="{{item.tid}}" data-favour="{{item.favour}}" data-key="{{item.floor}}">
-        <image class="bottomItemImage" src="../../images/ding.png" />
-        <text class="bottomItemText">{{item.favour}}</text>
+        <image style="vertical-align:-2rpx;" wx:if="{{item.is_favour}}" class="bottomItemImage" src="../../images/zan-selected.png" />
+        <image style="vertical-align:-2rpx;" wx:else class="bottomItemImage" src="../../images/zan.png" />
+        <text wx:if="{{item.is_favour}}" style="color:#cb4242;" class="bottomItemText">{{item.favour}}</text>
+        <text wx:else class="bottomItemText">{{item.favour}}</text>
       </label>
     </view>
     <view class="bottomItemView">
       <navigator url="/pages/details/details?tid={{item.tid}}" hover-class="navigator-hover">
-        <image class="bottomItemImage" src="../../images/bcomment.png" />
+        <image class="bottomItemImage" src="../../images/comment.png" />
         <text class="bottomItemText">{{item.rynum}}</text>
       </navigator>  
     </view>
-    <view class="bottomItemView">
+    <view class="bottomItemView" style="border:none;">
       <label>
-        <image class="bottomItemImage" src="../../images/bshare.png" />
+        <image class="bottomItemImage" src="../../images/share.png" />
         <text class="bottomItemText">{{item.forward}}</text>
         <button open-type="share" data-key="{{item.floor}}" data-forward="{{item.forward}}" data-tid="{{item.tid}}" data-content="{{item.content}}" data-img="{{item.images[0]}}" style="display:none;"></button>  
       </label>

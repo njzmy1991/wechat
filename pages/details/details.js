@@ -24,9 +24,10 @@ Page({
   onLoad: function (options) {
     var that = this;
     var tid = options.tid;
+    var wid = wx.getStorageSync('wid');
     wx.request({
-      url: 'http://vapee.com/new_vapee/index.php/wechat/wxsmall/details',
-      data: {tid: tid},
+      url: 'https://www.vapee.com/new_vapee/index.php/wechat/wxsmall/details',
+      data: {tid: tid, wid:wid},
       method: "GET",
       header: {
         "Content-Type": "application/json"
@@ -100,14 +101,21 @@ Page({
   */
   likeScang: function (e) {
     var that = this;
-    utils.isLogin('details&tid' + that.data.tid, function (result) {
+    utils.isLogin('details&tid='+that.data.tid, function (result) {
       if(result){
+        that.setData({wid:result});
         utils.clickFavour({
           'tid': that.data.tid,
           'wid': that.data.wid,
           'favour': Number(e.currentTarget.dataset.favour)
         }, function (result) {
           var details = that.data.details;
+          var is_favour = that.data.details.is_favour;
+          if (is_favour) {
+            details['is_favour'] = false;
+          } else {
+            details['is_favour'] = true;
+          }
           details['favour'] = result;
           that.setData({
             details: details
@@ -122,9 +130,10 @@ Page({
    */
   toShowModal(e) {
     var that = this;
-    utils.isLogin('details&tid'+that.data.tid, function(result){
+    utils.isLogin('details&tid='+that.data.tid, function(result){
       if(result){
         that.setData({
+          wid: result,
           showModal: true,
           p_rid: e.currentTarget.dataset.p_rid
         })
@@ -381,7 +390,7 @@ Page({
       return {
         title: that.data.details.content,
         path: 'pages/details/details?tid=' + that.data.tid,
-        imageUrl: ''
+        imageUrl: res.target.dataset.img
       }
     }else{
       return false;

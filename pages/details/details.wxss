@@ -14,14 +14,6 @@ page {
     margin-bottom: 25rpx;
     margin-top: 24rpx;
 }
-
-.sourceAvatarStyle {
-    display: flex;
-    width: 25rpx;
-    height: 25rpx;
-    border-radius: 12.5rpx;
-}
-
 .noImageLowerLine {
     display: flex;
     margin-top: 20rpx;
@@ -48,69 +40,6 @@ page {
     padding-right: 8rpx;
 }
 
-
-.videoImageStyle {
-    display: flex;
-    position: relative;
-    width: 710rpx;
-    height: 460rpx;
-}
-
-.playBtnStyle {
-    display: flex;
-    position: absolute;
-    width: 120rpx;
-    height: 120rpx;
-    margin-left: 355rpx;
-    margin-top: 230rpx;
-    transform: translate(-50%, -50%);
-}
-
-.durationStyle {
-    display: flex;
-    position: absolute;
-    width: 80rpx;
-    height: 30rpx;
-    font-size: 20rpx;
-    justify-content: center;
-    line-height: 30rpx;
-    background-color: white;
-    border-radius: 15rpx;
-    opacity:0.3;
-    right: 2%;
-    bottom: 2%;
-}
-
-.oneBigImageStyle {
-    display: flex;
-    width: 710rpx;
-    height: 460rpx;
-}
-
-.leftViewStyle {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-}
-
-
-.rightImageStyle {
-    display: flex;
-    width: 180rpx;
-    height: 120rpx;
-}
-
-.rightImageCellStyle {
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    font-size: 30rpx;
-    height: 100%;
-    margin: 3rpx;
-    padding: 20rpx;
-    line-height: 150%;
-}
 .share{
   width: 100rpx;
   height: 50rpx;
@@ -152,8 +81,8 @@ page {
   position: fixed;
   bottom: 0;
   background: #fff;
-  width: 80%;
-  padding: 0 10% 20rpx 10%;
+  width: 90%;
+  padding: 0 5% 20rpx 5%;
 }
 .bottomItemView{
   display:flex;
@@ -161,17 +90,18 @@ page {
   align-items:center;
   justify-content:center;
   margin-top:12rpx;
-  padding-left:10rpx;
   padding-right:10rpx;
   height: 60rpx;
+  border-right: 1px solid #e8e8e8;
+  width: 30%;
 }
 .bottomItemImage{
-  width: 45rpx;
-  height: 45rpx;
-  vertical-align: -9rpx;
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: -7rpx;
 }
 .bottomItemText{
-  font-size: 15rpx;
+  font-size: 32rpx;
   color: #b8b2b2;
   margin-left: 10rpx;
   margin-top: 8rpx;
@@ -226,12 +156,11 @@ margin-top:304rpx;
     align-items: center;
     position:fixed;
     bottom:2rpx;
-    width:95%;
-    margin-left: 3%;
+    width:100%;
     z-index: 9500;
 }
 .reply-dialog-content-input {
-    width: 83%;
+    width: 85%;
     min-height: 50rpx;
     padding: 20rpx 10rpx 10rpx;
     border-radius: 10rpx;

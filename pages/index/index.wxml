@@ -12,7 +12,7 @@
                         </view>
                     </view>
                 </scroll-view>
-                <scroll-view class="scrollViewStyle" style="height:{{height}}px" scroll-y="true" upper-threshold="2" lower-threshold="10" scroll-top="50"  bindscrolltolower="lower">
+                <scroll-view class="scrollViewStyle" style="height:{{height}}px" scroll-y="true" upper-threshold="2" lower-threshold="100" scroll-top="20"  bindscrolltolower="lower">
                   <block wx:for="{{list}}" wx:key>
                     <view class="noImageStyle">
                       <template is="list" data="{{item}}"></template>

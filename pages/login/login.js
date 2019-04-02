@@ -5,8 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    nav_url:null
+    nav_url: null,
+    tabBar:true,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   /**
    * 授权操作
@@ -32,12 +33,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     var that = this;
+    var tabBar = that.data.tabBar;
     var nav_url = '../'+options.t+'/'+options.t
     if (options.tid != undefined){
-      nav_url = nav_url + '&tid=' + options.tid
+      tabBar = false;
+      nav_url = nav_url + '?tid=' + options.tid;
     }
+    console.log(tabBar);
     that.setData({
+      tabBar:tabBar,
       nav_url: nav_url
     })
     wx.getSetting({
@@ -82,9 +88,11 @@ Page({
                     duration: 1000
                   });
                 }
-                wx.switchTab({
-                  url: that.data.nav_url
-                }) 
+                if (that.data.tabBar){
+                  wx.switchTab({url: that.data.nav_url})
+                }else{
+                  wx.redirectTo({url: that.data.nav_url})
+                }
               }
             })
           }

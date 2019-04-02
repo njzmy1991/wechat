@@ -260,9 +260,6 @@ page {
     margin-bottom: 20rpx;
 }
 
-.post-component-header-form {
-}
-
 .post-component-header {
     display: flex;
     justify-content: space-between;
@@ -554,17 +551,18 @@ page {
   align-items:center;
   justify-content:center;
   margin-top:12rpx;
-  padding-left:10rpx;
   padding-right:10rpx;
   height: 60rpx;
+  border-right: 1px solid #e8e8e8;
+  width: 30%;
 }
 .bottomItemImage{
-  width: 45rpx;
-  height: 45rpx;
-  vertical-align: -9rpx;
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: -4rpx;
 }
 .bottomItemText{
-  font-size: 15rpx;
+  font-size: 32rpx;
   color: #b8b2b2;
   margin-left: 10rpx;
   margin-top: 8rpx;

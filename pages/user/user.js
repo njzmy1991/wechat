@@ -29,14 +29,12 @@ Page({
     var that = this;
     var wid = that.data.wid;
     wx.request({
-      url: 'http://vapee.com/new_vapee/index.php/wechat/wxsmall/lists/'+e+'/'+wid,
+      url: 'https://www.vapee.com/new_vapee/index.php/wechat/wxsmall/lists/'+e+'/'+wid,
       header: {
         "Content-Type": "application/json"
       },
       success: function (res){
-        that.setData({
-          list: res.data.result
-        });
+        that.setData({list: res.data.result});
       }
     }),
     wx.getSystemInfo({
@@ -96,6 +94,12 @@ Page({
         }, function (result) {
           var list = that.data.list;
           var key = res.currentTarget.dataset.key;
+          var is_favour = list[key]['is_favour'];
+          if (is_favour) {
+            list[key]['is_favour'] = false;
+          } else {
+            list[key]['is_favour'] = true;
+          }
           list[key]['favour'] = result;
           that.setData({ list });
         });
@@ -106,14 +110,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    utils.isLogin('user', function (result) {
-      if (result) {
-        that.setData({wid:result});
-        that.userInfo();
-        that.getList('publish');  
-      }
-    })   
+ 
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -125,7 +122,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    utils.isLogin('user', function (result) {
+      if (result) {
+        that.setData({wid: result});
+        that.userInfo();
+        that.getList('publish');
+      }
+    })  
   },
 
   /**

@@ -13,8 +13,9 @@ Page({
     var that = this;
     var list = that.data.list;
     var page = that.data.page;
+    var wid = wx.getStorageSync('wid');
     wx.request({
-      url: 'https://www.vapee.com/new_vapee/index.php/wechat/wxsmall/lists/index',
+      url: 'https://www.vapee.com/new_vapee/index.php/wechat/wxsmall/lists/index/'+wid,
       data: {
         page: page
       },
@@ -63,6 +64,12 @@ Page({
         }, function (result){
           var list = that.data.list;
           var key = res.currentTarget.dataset.key;
+          var is_favour = list[key]['is_favour'];
+          if(is_favour){
+            list[key]['is_favour'] = false;  
+          }else{
+            list[key]['is_favour'] = true;
+          }
           list[key]['favour'] = result;
           that.setData({list});
         });
@@ -72,14 +79,20 @@ Page({
 
   // 页面加载完毕的时候调用
   onLoad: function () {
+
+  },
+  // 页面显示的时候调用
+  onShow: function () {
     var that = this;
+    var wid = wx.getStorageSync('wid');
     wx.request({
-      url: 'https://www.vapee.com/new_vapee/index.php/wechat/wxsmall/lists/index',
+      url: 'https://www.vapee.com/new_vapee/index.php/wechat/wxsmall/lists/index/'+ wid,
       header: {
         "Content-Type": "application/json"
       },
       success: function (res) {
         that.setData({
+          page:2,
           list: res.data.result
         });
       }
@@ -92,9 +105,7 @@ Page({
       }
     })
   },
-  // 页面显示的时候调用
-  onShow: function () { 
-  },
+
   // 页面渲染完毕的时候调用
   onReady: function () {
   },

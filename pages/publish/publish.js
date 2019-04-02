@@ -131,6 +131,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     utils.isLogin('publish', function (result) {
       if (result) {
         that.setData({ wid: result })

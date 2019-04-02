@@ -11,7 +11,7 @@
     <text>{{details.content}}</text>
     <view class="threeImageStyle">
       <block wx:for="{{details.images}}" wx:key wx:for-item="dImg">  
-        <image class="threeSmallImageStyle" bindtap="imgYu"  mode="scaleToFill" data-list="{{details.images}}" data-src="{{dImg}}" src="{{dImg}}"></image>
+        <image class="threeSmallImageStyle" bindtap="imgYu"  mode="aspectFill" data-list="{{details.images}}" data-src="{{dImg}}" src="{{dImg}}"></image>
       </block>
     </view>
   </view>
@@ -48,8 +48,10 @@
   <view class="bottomView">
     <view class="bottomItemView">
       <label bindtap="likeScang" data-favour="{{details.favour}}">
-        <image class="bottomItemImage" src="../../images/ding.png" />
-        <text class="bottomItemText">{{details.favour}}</text>
+        <image style="vertical-align:-5rpx;" wx:if="{{details.is_favour}}" class="bottomItemImage" src="../../images/zan-selected.png" />
+        <image style="vertical-align:-5rpx;" wx:else class="bottomItemImage" src="../../images/zan.png" />
+        <text wx:if="{{details.is_favour}}" style="color:#cb4242;" class="bottomItemText">{{details.favour}}</text>
+        <text wx:else class="bottomItemText">{{details.favour}}</text>
       </label>
     </view>
     <view class="bottomItemView">
@@ -58,7 +60,7 @@
         <text class="bottomItemText">{{details.rynum}}</text>
       </label>
     </view>
-    <view class="bottomItemView">
+    <view class="bottomItemView" style="border:none;">
       <label>
         <image class="bottomItemImage" src="../../images/share.png" />
         <text class="bottomItemText">{{details.forward}}</text>
